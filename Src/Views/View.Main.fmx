@@ -1,0 +1,73 @@
+object FrmMainView: TFrmMainView
+  Left = 0
+  Top = 0
+  Caption = 'Main'
+  ClientHeight = 694
+  ClientWidth = 411
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  OnResize = FormResize
+  DesignerMasterStyle = 0
+  object Viewport3D1: TViewport3D
+    Anchors = [akLeft, akTop, akRight, akBottom]
+    Color = claBlack
+    Position.X = 8.000000000000000000
+    Position.Y = 49.000000000000000000
+    Size.Width = 393.000000000000000000
+    Size.Height = 483.000000000000000000
+    Size.PlatformDefault = False
+    OnMouseMove = Viewport3D1MouseMove
+    object Sphere1: TSphere
+      Position.X = -3.000000000000000000
+      Position.Y = -2.000000000000000000
+      RotationAngle.Z = 2.430084228515625000
+      Width = 10.000000000000000000
+      Height = 10.000000000000000000
+      Depth = 1.000000000000000000
+      Quanternion = '(0,0,-0.0212044380605221,-0.999775111675262)'
+    end
+  end
+  object MmLog: TMemo
+    Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+    DataDetectorTypes = []
+    Anchors = [akLeft, akRight, akBottom]
+    Position.X = 8.000000000000000000
+    Position.Y = 599.000000000000000000
+    Size.Width = 395.000000000000000000
+    Size.Height = 87.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    Viewport.Width = 391.000000000000000000
+    Viewport.Height = 83.000000000000000000
+  end
+  object BtnSphereScreenCoord: TButton
+    Position.X = 8.000000000000000000
+    Position.Y = 8.000000000000000000
+    Size.Width = 136.000000000000000000
+    Size.Height = 33.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    Text = 'Sphere Coord Screen'
+    OnClick = BtnSphereScreenCoordClick
+  end
+  object LblMouseCoord: TLabel
+    Anchors = [akLeft, akBottom]
+    Position.X = 8.000000000000000000
+    Position.Y = 541.000000000000000000
+    Text = 'Coords:'
+    TabOrder = 3
+  end
+  object EdtCoord: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    Anchors = [akLeft, akBottom]
+    TabOrder = 4
+    Text = '0, 0'
+    Position.X = 8.000000000000000000
+    Position.Y = 566.000000000000000000
+    Size.Width = 223.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+  end
+end

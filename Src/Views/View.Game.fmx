@@ -1,0 +1,35 @@
+object Frm3d: TFrm3d
+  Left = 0
+  Top = 0
+  Caption = '3D Form'
+  Color = claBlack
+  ClientHeight = 694
+  ClientWidth = 411
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = Form3DCreate
+  DesignerMasterStyle = 0
+  object Layer3D1: TLayer3D
+    Fill.Color = claSpringgreen
+    Fill.Kind = Solid
+    Height = 1.858349800109863000
+    Position.X = -0.425184309482574500
+    Position.Y = -5.387402534484863000
+    Resolution = 50
+    StyleLookup = 'backgroundstyle'
+    Width = 7.448064327239990000
+  end
+  object Cube1: TCube
+    Position.X = 5.000000000000000000
+    RotationAngle.X = 1.019943237304688000
+    RotationAngle.Y = 29.771701812744140000
+    RotationAngle.Z = 1.773498535156250000
+    Width = 3.248849630355835000
+    Height = 4.206076622009277000
+    Depth = 0.999999940395355200
+    Quanternion = 
+      '(-0.0125759784132242,-0.256719321012497,-0.0126701919361949,-0.9' +
+      '66319978237152)'
+  end
+end

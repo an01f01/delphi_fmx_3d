@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2023/05/05 13:30:58.000.738,=C:\Users\anegri\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/01/07 09:47:44.000.474,=C:\Users\anegri\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/01/07 09:49:18.000.682,C:\Users\anegri\Documents\Embarcadero\Studio\Projects\Unit1.fmx=D:\dev\Medium\Fmx3D\Src\Views\View.Main.fmx</Transaction>
+    <Transaction>2024/01/07 09:49:18.000.682,C:\Users\anegri\Documents\Embarcadero\Studio\Projects\Unit1.pas=D:\dev\Medium\Fmx3D\Src\Views\View.Main.pas</Transaction>
+    <Transaction>2024/01/07 09:49:30.000.822,C:\Users\anegri\Documents\Embarcadero\Studio\Projects\Project1.dproj=D:\dev\Medium\Fmx3D\Project\Fmx3D.dproj</Transaction>
+    <Transaction>2024/01/07 09:50:15.000.098,=D:\dev\Medium\Fmx3D\Project\Unit1.pas</Transaction>
+    <Transaction>2024/01/07 09:51:07.000.086,=D:\dev\Medium\Fmx3D\Project\Unit1.pas</Transaction>
+    <Transaction>2024/01/07 09:51:32.000.003,D:\dev\Medium\Fmx3D\Project\Unit1.pas=D:\dev\Medium\Fmx3D\Src\Views\View.Game.pas</Transaction>
+    <Transaction>2024/01/07 09:51:32.000.003,D:\dev\Medium\Fmx3D\Project\Unit1.fmx=D:\dev\Medium\Fmx3D\Src\Views\View.Game.fmx</Transaction>
+    <Transaction>2024/01/07 10:22:57.000.352,D:\dev\Medium\Fmx3D\Src\Views\View.Game.pas=</Transaction>
+    <Transaction>2024/01/08 07:56:44.000.985,=D:\dev\Medium\Fmx3D\Project\Unit1.pas</Transaction>
+    <Transaction>2024/01/08 07:57:11.000.561,=D:\dev\Medium\Fmx3D\Src\Views\View.Game.pas</Transaction>
+  </Transactions>  <ActiveMobileDevice>   <NoProfile Android="9889db314d5653585a" Android64="9889db314d5653585a"/>
+  </ActiveMobileDevice>
+</BorlandProject>

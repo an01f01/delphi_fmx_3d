@@ -14,22 +14,32 @@ object Frm3d: TFrm3d
     Fill.Color = claSpringgreen
     Fill.Kind = Solid
     Height = 1.858349800109863000
-    Position.X = -0.425184309482574500
-    Position.Y = -5.387402534484863000
+    Position.X = -0.349811792373657200
+    Position.Y = -3.746040344238281000
     Resolution = 50
+    RotationAngle.Z = 45.000000000000000000
     StyleLookup = 'backgroundstyle'
     Width = 7.448064327239990000
+    Quanternion = '(0,0,0.382683455944061,0.923879504203796)'
   end
   object Cube1: TCube
-    Position.X = 5.000000000000000000
-    RotationAngle.X = 1.019943237304688000
-    RotationAngle.Y = 29.771701812744140000
-    RotationAngle.Z = 1.773498535156250000
+    Position.X = -1.945900797843933000
+    Position.Y = 3.532218933105469000
+    RotationAngle.Z = 30.000000000000000000
     Width = 3.248849630355835000
     Height = 4.206076622009277000
     Depth = 0.999999940395355200
     Quanternion = 
-      '(-0.0125759784132242,-0.256719321012497,-0.0126701919361949,-0.9' +
-      '66319978237152)'
+      '(-0.128494367003441,0.00460739387199283,-0.224622413516045,-0.96' +
+      '5924680233002)'
+  end
+  object Plane1: TPlane
+    Position.X = -3.302361249923706000
+    Position.Y = -1.802051067352295000
+    RotationAngle.Z = 20.000000000000000000
+    Width = 1.000000000000000000
+    Height = 1.000000000000000000
+    Depth = 0.001000000047497451
+    Quanternion = '(0,0,0.173648178577423,0.984807729721069)'
   end
 end

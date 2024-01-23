@@ -19,14 +19,73 @@ object FrmMainView: TFrmMainView
     Size.Height = 483.000000000000000000
     Size.PlatformDefault = False
     OnMouseMove = Viewport3D1MouseMove
-    object Sphere1: TSphere
+    object Cube1: TCube
       Position.X = -3.000000000000000000
-      Position.Y = -2.000000000000000000
-      RotationAngle.Z = 2.430084228515625000
-      Width = 10.000000000000000000
-      Height = 10.000000000000000000
+      Position.Y = -3.000000000000000000
+      Scale.X = 2.000000000000000000
+      Scale.Y = 2.000000000000000000
+      Scale.Z = 2.000000000000000000
+      RotationAngle.Z = 45.000000000000000000
+      Width = 1.000000000000000000
+      Height = 1.000000000000000000
       Depth = 1.000000000000000000
-      Quanternion = '(0,0,-0.0212044380605221,-0.999775111675262)'
+      Quanternion = '(0,0,0.382683455944061,0.923879504203796)'
+    end
+    object Layer3D2: TLayer3D
+      Align = Client
+      Fill.Color = claViolet
+      Fill.Kind = Solid
+      Height = 483.000000000000000000
+      Position.X = 196.000000000000000000
+      Position.Y = 241.000000000000000000
+      Projection = Screen
+      Resolution = 50
+      StyleLookup = 'backgroundstyle'
+      Width = 393.000000000000000000
+      object Circle1: TCircle
+        Fill.Color = claGold
+        Size.Width = 10.000000000000000000
+        Size.Height = 10.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Kind = None
+      end
+      object Circle2: TCircle
+        Fill.Color = claGreenyellow
+        Size.Width = 10.000000000000000000
+        Size.Height = 10.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Kind = None
+      end
+      object Circle3: TCircle
+        Fill.Color = claGreenyellow
+        Size.Width = 10.000000000000000000
+        Size.Height = 10.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Kind = None
+      end
+      object Circle4: TCircle
+        Fill.Color = claGreenyellow
+        Size.Width = 10.000000000000000000
+        Size.Height = 10.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Kind = None
+      end
+      object Circle5: TCircle
+        Fill.Color = claGreenyellow
+        Size.Width = 10.000000000000000000
+        Size.Height = 10.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Kind = None
+      end
+    end
+    object Layer3D1: TLayer3D
+      Fill.Kind = Solid
+      Height = 4.000000000000000000
+      Position.X = 1.507803082466125000
+      Position.Y = -5.267241001129150000
+      Resolution = 50
+      StyleLookup = 'backgroundstyle'
+      Width = 8.000000000000000000
     end
   end
   object MmLog: TMemo
@@ -42,32 +101,57 @@ object FrmMainView: TFrmMainView
     Viewport.Width = 391.000000000000000000
     Viewport.Height = 83.000000000000000000
   end
-  object BtnSphereScreenCoord: TButton
+  object BtnCubeScreenCoord: TButton
     Position.X = 8.000000000000000000
     Position.Y = 8.000000000000000000
     Size.Width = 136.000000000000000000
     Size.Height = 33.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 2
-    Text = 'Sphere Coord Screen'
-    OnClick = BtnSphereScreenCoordClick
+    TabOrder = 3
+    Text = 'Calculate Layer Size'
+    OnClick = BtnCubeScreenCoordClick
   end
   object LblMouseCoord: TLabel
     Anchors = [akLeft, akBottom]
     Position.X = 8.000000000000000000
     Position.Y = 541.000000000000000000
     Text = 'Coords:'
-    TabOrder = 3
+    TabOrder = 4
   end
   object EdtCoord: TEdit
     Touch.InteractiveGestures = [LongTap, DoubleTap]
     Anchors = [akLeft, akBottom]
-    TabOrder = 4
+    TabOrder = 5
     Text = '0, 0'
     Position.X = 8.000000000000000000
     Position.Y = 566.000000000000000000
     Size.Width = 223.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
+  end
+  object PaintBox1: TPaintBox
+    Position.X = 8.000000000000000000
+    Position.Y = 50.000000000000000000
+    Size.Width = 393.000000000000000000
+    Size.Height = 483.000000000000000000
+    Size.PlatformDefault = False
+    OnPaint = PaintBox1Paint
+  end
+  object Switch1: TSwitch
+    IsChecked = False
+    Position.X = 325.000000000000000000
+    Position.Y = 8.000000000000000000
+    TabOrder = 7
+    OnClick = Switch1Click
+  end
+  object BtnForm3D: TButton
+    Position.X = 152.000000000000000000
+    Position.Y = 9.000000000000000000
+    Size.Width = 136.000000000000000000
+    Size.Height = 33.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    Text = 'Show 3D Form'
+    OnClick = BtnForm3DClick
   end
 end

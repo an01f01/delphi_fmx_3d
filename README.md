@@ -5,13 +5,10 @@ Contains a sample app that calculates the screen coordinates from 3D objects in 
 
 Here is the running application
 
-![My animated logo](Imgs/2024-01-09_12-20-25.jpg)
+![My animated logo](Imgs/2024-01-23_16-01-03.gif)
 
 The respective coordinates for the green TLayer3D, top left and bottom right
 
-![My animated logo](Imgs/2024-01-09_12-20-14.jpg)
+![My animated logo](Imgs/2024-01-23_9-45-58.jpg)
 
-Here we have a screen shot of the Form3D without the title bar and the respective  coordinates shown in the console.
-
-![My animated logo](Imgs/2024-01-08_21-38-46.jpg)
 

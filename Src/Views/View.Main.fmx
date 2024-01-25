@@ -18,7 +18,6 @@ object FrmMainView: TFrmMainView
     Size.Width = 393.000000000000000000
     Size.Height = 483.000000000000000000
     Size.PlatformDefault = False
-    OnMouseMove = Viewport3D1MouseMove
     object Cube1: TCube
       Position.X = -3.000000000000000000
       Position.Y = -3.000000000000000000
@@ -93,13 +92,13 @@ object FrmMainView: TFrmMainView
     DataDetectorTypes = []
     Anchors = [akLeft, akRight, akBottom]
     Position.X = 8.000000000000000000
-    Position.Y = 599.000000000000000000
+    Position.Y = 570.000000000000000000
     Size.Width = 395.000000000000000000
-    Size.Height = 87.000000000000000000
+    Size.Height = 116.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 1
     Viewport.Width = 391.000000000000000000
-    Viewport.Height = 83.000000000000000000
+    Viewport.Height = 112.000000000000000000
   end
   object BtnCubeScreenCoord: TButton
     Position.X = 8.000000000000000000
@@ -111,27 +110,21 @@ object FrmMainView: TFrmMainView
     Text = 'Calculate Layer Size'
     OnClick = BtnCubeScreenCoordClick
   end
-  object LblMouseCoord: TLabel
-    Anchors = [akLeft, akBottom]
-    Position.X = 8.000000000000000000
-    Position.Y = 541.000000000000000000
-    Text = 'Coords:'
-    TabOrder = 4
-  end
   object EdtCoord: TEdit
     Touch.InteractiveGestures = [LongTap, DoubleTap]
-    Anchors = [akLeft, akBottom]
-    TabOrder = 5
+    Anchors = [akLeft, akRight, akBottom]
+    TabOrder = 4
     Text = '0, 0'
     Position.X = 8.000000000000000000
-    Position.Y = 566.000000000000000000
-    Size.Width = 223.000000000000000000
+    Position.Y = 540.000000000000000000
+    Size.Width = 395.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
   end
   object PaintBox1: TPaintBox
+    Anchors = [akLeft, akTop, akRight, akBottom]
     Position.X = 8.000000000000000000
-    Position.Y = 50.000000000000000000
+    Position.Y = 49.000000000000000000
     Size.Width = 393.000000000000000000
     Size.Height = 483.000000000000000000
     Size.PlatformDefault = False
@@ -141,7 +134,7 @@ object FrmMainView: TFrmMainView
     IsChecked = False
     Position.X = 325.000000000000000000
     Position.Y = 8.000000000000000000
-    TabOrder = 7
+    TabOrder = 6
     OnClick = Switch1Click
   end
   object BtnForm3D: TButton

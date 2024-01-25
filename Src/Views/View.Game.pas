@@ -3,7 +3,11 @@ unit View.Game;
 interface
 
 uses
-  Windows, System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+
+{$IFDEF WINDOWS}
+  Windows,
+{$ENDIF}
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms3D, FMX.Types3D, FMX.Forms, FMX.Graphics, 
   FMX.Dialogs, System.Math.Vectors, FMX.Objects3D, FMX.Controls3D, FMX.Layers3D,
   FMX.Objects, FMX.Controls.Presentation, FMX.StdCtrls, System.Math;
@@ -41,7 +45,12 @@ var
   tmpsp: TPoint3D;
   tmpr: TRectF;
 begin
+
+
+{$IFDEF WINDOWS}
   AllocConsole;
+{$ENDIF}
+
   writeln('Size: ' + self.Width.ToString + ', ' + self.height.ToString);
   writeln('Calculating pixels sizes for Layer3D');
 

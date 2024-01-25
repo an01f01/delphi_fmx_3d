@@ -15,7 +15,6 @@ type
     Viewport3D1: TViewport3D;
     MmLog: TMemo;
     BtnCubeScreenCoord: TButton;
-    LblMouseCoord: TLabel;
     EdtCoord: TEdit;
     Cube1: TCube;
     PaintBox1: TPaintBox;
@@ -63,6 +62,7 @@ begin
   var tmpsp: TLayer2DCoords;
   tmpsp := ScreenHelper.CalculateLayerSize(Viewport3D1.Context, Layer3D1);
   MmLog.Lines.Add('Layer Pixel Size: ' + tmpsp.Size.X.ToString + ' ' + tmpsp.Size.Y.ToString);
+  EdtCoord.Text := tmpsp.TopLeft.X.ToString + ' ' + tmpsp.TopLeft.Y.ToString;
 end;
 
 procedure TFrmMainView.FormCreate(Sender: TObject);
@@ -98,33 +98,33 @@ var
   FLabl: String;
   tmpsp: TPoint3D;
   tmpr: TRectF;
+  ScreenScale: Single;
 begin
   FSize := 3;
+  ScreenScale := ScreenHelper.GetScreenScale;
+
   ABMP.Canvas.Fill.Color := TAlphaColorRec.Green;
   ABMP.Canvas.Stroke.Color := ABMP.Canvas.Fill.Color;
   ABMP.Canvas.Stroke.Kind := TBrushKind.Solid;
   ABMP.Canvas.Stroke.Thickness := 1;
 
 
-  MmLog.Lines.Add('POSITION CENTER: ' + Layer3D1.Position.X.ToString + ', ' + (Layer3D1.Position.Y-Layer3D1.Height/2.0).ToString);
-
-
-  tmpsp := AVP.Context.WorldToScreen(TProjection.Camera,TPoint3D.Create(Layer3D1.Position.X, Layer3D1.Position.Y, Layer3D1.Position.Z));
-  FLabl := Format('X:%0.2f Y:%0.2f',[tmpsp.X,tmpsp.Y]);
-
   tmpsp := ScreenHelper.CalculateScreenPosition(AVP.Context,
-    TPoint3D.Zero, Layer3D1.Scale.Point, Layer3D1.RotationAngle.Point, Layer3D1.Position.Point);
-  Circle1.Position.X := tmpsp.X - Circle1.Width / 2;
-  Circle1.Position.Y := tmpsp.Y - Circle1.Width / 2;
+    TPoint3D.Zero, Layer3D1.Scale.Point, Layer3D1.RotationAngle.Point, Layer3D1.Position.Point, True);
+  Circle1.Position.X := (tmpsp.X) - Circle1.Width / 2;
+  Circle1.Position.Y := (tmpsp.Y) - Circle1.Width / 2;
 
-  tmpsp.X := tmpsp.X - PaintBox1.Position.X;
-  tmpsp.Y := tmpsp.Y - PaintBox1.Position.Y;
+  MmLog.Lines.Add('Center: ' + (tmpsp.X/ScreenScale).ToString + ', ' + tmpsp.Y.ToString);
+
+  tmpsp.X := (tmpsp.X) - PaintBox1.Position.X;
+  tmpsp.Y := (tmpsp.Y) - PaintBox1.Position.Y;
   tmpr := RectF(tmpsp.X -FSize, tmpsp.Y -FSize, tmpsp.X +FSize, tmpsp.Y +FSize);
   ABMP.Canvas.FillEllipse(tmpr,100, TBrush.Create(TBrushKind.Solid,TAlphaColorRec.Aqua));
 
+
   tmpsp := TPoint3D.Zero;
   tmpsp := ScreenHelper.CalculateScreenPosition(AVP.Context,
-    TPoint3D.Create(-Layer3D1.Width/2, -Layer3D1.Height/2, 0.0), Layer3D1.Scale.Point, Layer3D1.RotationAngle.Point, Layer3D1.Position.Point);
+    TPoint3D.Create(-Layer3D1.Width/2, -Layer3D1.Height/2, 0.0), Layer3D1.Scale.Point, Layer3D1.RotationAngle.Point, Layer3D1.Position.Point, True);
   Circle2.Position.X := tmpsp.X - Circle2.Width / 2;
   Circle2.Position.Y := tmpsp.Y - Circle2.Width / 2;
 
@@ -136,7 +136,7 @@ begin
 
   tmpsp := TPoint3D.Zero;
   tmpsp := ScreenHelper.CalculateScreenPosition(AVP.Context,
-    TPoint3D.Create(Layer3D1.Width/2, -Layer3D1.Height/2, 0.0), Layer3D1.Scale.Point, Layer3D1.RotationAngle.Point, Layer3D1.Position.Point);
+    TPoint3D.Create(Layer3D1.Width/2, -Layer3D1.Height/2, 0.0), Layer3D1.Scale.Point, Layer3D1.RotationAngle.Point, Layer3D1.Position.Point, True);
   Circle3.Position.X := tmpsp.X - Circle3.Width / 2;
   Circle3.Position.Y := tmpsp.Y - Circle3.Width / 2;
 
@@ -148,7 +148,7 @@ begin
 
   tmpsp := TPoint3D.Zero;
   tmpsp := ScreenHelper.CalculateScreenPosition(AVP.Context,
-    TPoint3D.Create(-Layer3D1.Width/2, Layer3D1.Height/2, 0.0), Layer3D1.Scale.Point, Layer3D1.RotationAngle.Point, Layer3D1.Position.Point);
+    TPoint3D.Create(-Layer3D1.Width/2, Layer3D1.Height/2, 0.0), Layer3D1.Scale.Point, Layer3D1.RotationAngle.Point, Layer3D1.Position.Point, True);
   Circle4.Position.X := tmpsp.X - Circle4.Width / 2;
   Circle4.Position.Y := tmpsp.Y - Circle4.Width / 2;
 
@@ -160,7 +160,7 @@ begin
 
   tmpsp := TPoint3D.Zero;
   tmpsp := ScreenHelper.CalculateScreenPosition(AVP.Context,
-    TPoint3D.Create(Layer3D1.Width/2, Layer3D1.Height/2, 0.0), Layer3D1.Scale.Point, Layer3D1.RotationAngle.Point, Layer3D1.Position.Point);
+    TPoint3D.Create(Layer3D1.Width/2, Layer3D1.Height/2, 0.0), Layer3D1.Scale.Point, Layer3D1.RotationAngle.Point, Layer3D1.Position.Point, True);
   Circle5.Position.X := tmpsp.X - Circle5.Width / 2;
   Circle5.Position.Y := tmpsp.Y - Circle5.Width / 2;
 
@@ -175,21 +175,15 @@ begin
   var Vertices: integer := FakeCube.Data.VertexBuffer.Length -1;
   var Scale := TPoint3D.Create(FakeCube.FScale.X, FakeCube.FScale.Y, FakeCube.FScale.Z);
 
-  var PtOffset := AVP.Context.WorldToScreen(TProjection.Camera, ACube.Position.Point);
-  MmLog.Lines.Add('Offset: ' + PtOffset.X.ToString + ', ' + PtOffset.Y.ToString + ', ' + PtOffset.Z.ToString);
-
-  MmLog.Lines.Add('Fake C Position: ' + FakeCube.Position.X.ToString + ', ' + FakeCube.Position.Y.ToString + ', ' + FakeCube.Position.Z.ToString);
-  MmLog.Lines.Add('Fake C Scale: ' + Scale.X.ToString + ', ' + Scale.Y.ToString + ', ' + Scale.Z.ToString);
-
   tmpsp := TPoint3D.Zero;
-  tmpsp := ScreenHelper.CalculateScreenPosition(AVP.Context, FakeCube.Data.VertexBuffer.Vertices[0], Scale, ACube.RotationAngle.Point, ACube.Position.Point);
+  tmpsp := ScreenHelper.CalculateScreenPosition(AVP.Context, FakeCube.Data.VertexBuffer.Vertices[0], Scale, ACube.RotationAngle.Point, ACube.Position.Point, True);
 
   Circle1.Position.X := tmpsp.X - Circle1.Width / 2;
   Circle1.Position.Y := tmpsp.Y - Circle1.Width / 2;
 
   for iI := 0 to Vertices do begin
     tmpsp := TPoint3D.Zero;
-    tmpsp := ScreenHelper.CalculateScreenPosition(AVP.Context, FakeCube.Data.VertexBuffer.Vertices[iI], Scale, ACube.RotationAngle.Point, ACube.Position.Point);
+    tmpsp := ScreenHelper.CalculateScreenPosition(AVP.Context, FakeCube.Data.VertexBuffer.Vertices[iI], Scale, ACube.RotationAngle.Point, ACube.Position.Point, True);
 
     FLabl := Format('X:%0.2f Y:%0.2f',[tmpsp.X,tmpsp.Y]);
 
@@ -219,8 +213,11 @@ end;
 procedure TFrmMainView.PaintBox1Paint(Sender: TObject; Canvas: TCanvas);
 var
   tmpBmp: TBitmap;
+  ScreeScale: Single;
 begin
+  ScreeScale := ScreenHelper.GetScreenScale;
   tmpBmp := TBitmap.Create(Trunc(Viewport3D1.Width), Trunc(Viewport3D1.Height));
+  EdtCoord.Text := 'Screen Scale: ' + ScreeScale.ToString + ' ' + Viewport3D1.Width.ToString + ' ' + (Viewport3D1.Width*ScreeScale).ToString;
   try
     tmpBmp.Resize(Trunc(PaintBox1.Width), Trunc(PaintBox1.Height));
     if tmpBmp.Canvas.BeginScene then begin

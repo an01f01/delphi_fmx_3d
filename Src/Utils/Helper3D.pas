@@ -2,7 +2,7 @@ unit Helper3D;
 
 interface
 
-uses System.Math,
+uses System.Math, FMX.Platform, System.Types,
   System.Math.Vectors, FMX.Types3D, FMX.Layers3D, Generics.Collections;
 
 type
@@ -16,17 +16,38 @@ type
   end;
 
   ScreenHelper = Class(TObject)
-  Private
-    class var myprivatea : integer;
   public
-    class function CalculateScreenPosition(Context: TContext3D; Point: TPoint3D; Scale: TPoint3D; Rotation: TPoint3D; Translation: TPoint3D): TPoint3D; static;
+    class function GetScreenScale: Single;
+    class function GetScreenSize: TPointF;
+    class function CalculateScreenPosition(Context: TContext3D; Point: TPoint3D; Scale: TPoint3D; Rotation: TPoint3D; Translation: TPoint3D; ApplyScreenScale: Boolean = False): TPoint3D; static;
     class function CalculateLayerSize(Context: TContext3D; Layer: TLayer3D): TLayer2DCoords;
   end;
 
 implementation
 
+class function ScreenHelper.GetScreenScale: Single;
+var
+   ScreenService: IFMXScreenService;
+begin
+   Result := 1;
+   if TPlatformServices.Current.SupportsPlatformService (IFMXScreenService, IInterface(ScreenService)) then
+   begin
+      Result := ScreenService.GetScreenScale;
+   end;
+end;
 
-class function ScreenHelper.CalculateScreenPosition(Context: TContext3D; Point: TPoint3D; Scale: TPoint3D; Rotation: TPoint3D; Translation: TPoint3D): TPoint3D;
+class function ScreenHelper.GetScreenSize: TPointF;
+var
+   ScreenService: IFMXScreenService;
+begin
+   Result := TPointF.Zero;
+   if TPlatformServices.Current.SupportsPlatformService (IFMXScreenService, IInterface(ScreenService)) then
+   begin
+      Result := ScreenService.GetScreenSize;
+   end;
+end;
+
+class function ScreenHelper.CalculateScreenPosition(Context: TContext3D; Point: TPoint3D; Scale: TPoint3D; Rotation: TPoint3D; Translation: TPoint3D; ApplyScreenScale: Boolean = False): TPoint3D;
 var
   Tmpsp: TPoint3D;
 begin
@@ -38,6 +59,9 @@ begin
   Tmpsp := Tmpsp * TMatrix3D.CreateRotationZ(DegToRad(Rotation.Z));
   Tmpsp := Tmpsp * TMatrix3D.CreateTranslation(Translation);
   Tmpsp := Context.WorldToScreen(TProjection.Camera,Tmpsp);
+  if ApplyScreenScale then begin
+    Tmpsp := Tmpsp / GetScreenScale;
+  end;
   Result := Tmpsp;
 end;
 
